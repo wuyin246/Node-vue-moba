@@ -1,0 +1,86 @@
+{
+  "id": "1471589",
+  "name": "vue-moba",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "103954",
+      "name": "nav-bar-home",
+      "font_class": "deji",
+      "unicode": "e607",
+      "unicode_decimal": 58887
+    },
+    {
+      "icon_id": "315423",
+      "name": "攻略",
+      "font_class": "gonglve",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "500030",
+      "name": "栏目",
+      "font_class": "lanmu",
+      "unicode": "e69c",
+      "unicode_decimal": 59036
+    },
+    {
+      "icon_id": "668011",
+      "name": "book",
+      "font_class": "book",
+      "unicode": "e61b",
+      "unicode_decimal": 58907
+    },
+    {
+      "icon_id": "1608363",
+      "name": "menu",
+      "font_class": "menu",
+      "unicode": "e616",
+      "unicode_decimal": 58902
+    },
+    {
+      "icon_id": "1701998",
+      "name": "message",
+      "font_class": "message",
+      "unicode": "e628",
+      "unicode_decimal": 58920
+    },
+    {
+      "icon_id": "4363181",
+      "name": "faxian",
+      "font_class": "xiazai",
+      "unicode": "e602",
+      "unicode_decimal": 58882
+    },
+    {
+      "icon_id": "6031579",
+      "name": "guanzhu",
+      "font_class": "huaban",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "6450855",
+      "name": "menu",
+      "font_class": "menu1",
+      "unicode": "e603",
+      "unicode_decimal": 58883
+    },
+    {
+      "icon_id": "6654507",
+      "name": "card-hero",
+      "font_class": "card-hero",
+      "unicode": "e61f",
+      "unicode_decimal": 58911
+    },
+    {
+      "icon_id": "10337412",
+      "name": "video",
+      "font_class": "video",
+      "unicode": "e761",
+      "unicode_decimal": 59233
+    }
+  ]
+}
