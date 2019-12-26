@@ -5,7 +5,7 @@ import './assets/iconfont/iconfont.css'
 import './assets/scss/style.scss'
 import router from './router'
 import store from './store'
-
+import '../plugins/element'
 
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 // require styles
@@ -20,6 +20,9 @@ Vue.component('m-card', Card)
 
 import ListCard from './components/ListCard.vue'
 Vue.component('m-list-card', ListCard)
+
+import BackToTop from './components/BackToTop.vue'
+Vue.component('BackToTop', BackToTop)
 
 import axios from 'axios'
 Vue.prototype.$http = axios.create({

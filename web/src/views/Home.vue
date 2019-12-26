@@ -163,11 +163,22 @@
         </div>
       </template>
     </m-list-card>
+
+    <el-tooltip placement="top" content="返回顶部">
+      <!-- 组件使用 -->
+      <BackToTop
+        transitionName="fade"
+        :customStyle="myBackToTopStyle"
+        :visibilityHeight="300"
+        :backPosition="0"
+      ></BackToTop>
+    </el-tooltip>
   </div>
 </template>
 
 <script>
 import dayjs from "dayjs";
+
 export default {
   filters: {
     dateFormat(val) {
@@ -176,6 +187,15 @@ export default {
   },
   data() {
     return {
+      myBackToTopStyle: {
+        right: "20px",
+        bottom: "150px",
+        width: "40px",
+        height: "40px",
+        "border-radius": "20px",
+        "line-height": "40px",
+        background: "#fff"
+      },
       newsCats: [],
       heroCats: [],
       videoCats: [],
