@@ -47,17 +47,100 @@
           <div class="nav-link">{{tabitem.name}}</div>
         </div>
       </div>
-      <div class="pt-3">
+      <div class="pt-3 mx-2">
         <swiper
           ref="list"
           :options="{autoHeight:true}"
           @slide-change="()=>isactive=$refs.list.swiper.realIndex"
         >
-          <swiper-slide>1111</swiper-slide>
+          <swiper-slide>
+            <!-- 技能上方按钮 - start -->
+            <div class="hero-skills">
+              <div class="top-btns d-flex fs-lg">
+                <div class="show-btn">
+                  <img src="../assets/img/icon_06.png" alt /> 英雄介绍视频
+                </div>
+                <div class="show-btn">
+                  <img src="../assets/img/icon_07.png" alt />一图识英雄
+                </div>
+              </div>
+            </div>
+            <!-- 技能上方按钮 - end -->
+
+            <!-- 技能展示 - start -->
+            <div class="skill-icons d-flex" v-if="model.skills">
+              <img
+                v-for="(item,index) in model.skills"
+                :key="index"
+                :src="item.icon"
+                class="img-item"
+                :class="{activeimg: isimgactive===index}"
+                @click="isimgactive = index"
+              />
+            </div>
+            <div class="skill-describes" v-if="model.skills">
+              <ul>
+                <li>
+                  <span
+                    class="fs-llg mr-5"
+                    style="font-weight:600;"
+                  >{{model.skills[isimgactive].name}}</span>
+                  <span
+                    class="fs-sm text-grey"
+                  >(冷却值：{{model.skills[isimgactive].delay}} 消耗：{{model.skills[isimgactive].cost}})</span>
+                </li>
+                <li class="border-bottom pb-3 fs-md">{{model.skills[isimgactive].description}}</li>
+                <li class="fs-md text-grey">小提示：{{model.skills[isimgactive].tips}}</li>
+              </ul>
+            </div>
+            <!-- 技能展示 - end -->
+
+            <!-- 使用技巧 - start -->
+            <div class="mt-5">
+              <div>
+                <img src alt />
+                <span class="fw-600 fs-llg">使用技巧</span>
+              </div>
+              <p>{{model.usageTips}}</p>
+            </div>
+            <!-- 使用技巧 - end -->
+
+            <!-- 对抗技巧 - start -->
+            <div class="mt-5">
+              <div>
+                <img src alt />
+                <span class="fw-600 fs-llg">对抗技巧</span>
+              </div>
+              <p>{{model.battleTips}}</p>
+            </div>
+            <!-- 对抗技巧 - end -->
+
+            <!-- 团战思路 - start -->
+            <div class="mt-5">
+              <div>
+                <img src alt />
+                <span class="fw-600 fs-llg">团战思路</span>
+              </div>
+              <p>{{model.teamTips}}</p>
+            </div>
+            <!-- 团战思路 - end -->
+          </swiper-slide>
+
+          <!-- 进阶攻略 -->
           <swiper-slide>2222</swiper-slide>
         </swiper>
       </div>
     </div>
+
+    <el-tooltip placement="top" content="返回顶部">
+      <!-- 组件使用 -->
+      <BackToTop
+        transitionName="fade"
+        :customStyle="myBackToTopStyle"
+        :visibilityHeight="200"
+        :backPosition="0"
+      ></BackToTop>
+    </el-tooltip>
   </div>
 </template>
 
@@ -68,6 +151,15 @@ export default {
   },
   data() {
     return {
+      myBackToTopStyle: {
+        right: "20px",
+        bottom: "150px",
+        width: "40px",
+        height: "40px",
+        "border-radius": "20px",
+        "line-height": "40px",
+        background: "#fff"
+      },
       model: {
         // categories: []
       },
@@ -79,7 +171,8 @@ export default {
           name: "进阶攻略"
         }
       ],
-      isactive: 0
+      isactive: 0,
+      isimgactive: 0
     };
   },
   methods: {
@@ -117,6 +210,51 @@ export default {
         font-size: 0.75rem;
         border: 1px solid rgba(255, 255, 255, 0.2);
       }
+    }
+  }
+}
+
+.top-btns {
+  justify-content: space-between;
+}
+
+.top-btns .show-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 49%;
+  text-align: center;
+  background-color: #fcfcfc;
+  border: 1px solid #eceef0;
+  padding: 8px 0;
+  border-radius: 5px;
+  color: #343440;
+  img {
+    width: 17px;
+    height: 17px;
+    margin-right: 5px;
+  }
+}
+
+.activeimg {
+  border: 2px solid #d59b40;
+  border-radius: 55px;
+}
+
+.skill-icons {
+  justify-content: space-between;
+  margin: 15px 5px;
+  img {
+    width: 18%;
+  }
+}
+
+.skill-describes {
+  ul {
+    padding: 0;
+    list-style: none;
+    li {
+      margin: 20px 0;
     }
   }
 }
