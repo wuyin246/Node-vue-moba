@@ -60,6 +60,14 @@ web
 - 访问地址：[http://localhost:8080](http://localhost:8080) 即可打开后台管理系统页面;
 - 如果遇到无法运行该命令，需要配置npm的环境变量，如在path变量中添加：C:\Users\zhenghong\AppData\Roaming\npm。
 
+## 第三方库使用
+- cors ：配置跨域
+- inflection： inflection第三方包，转换categories => Category
+- multer：上传文件  
+- bcrypt: 密码加密
+- jsonwebtoken : 生成token返回给客户端
+- http-assert: 服务端报错返回状态码及json信息
+
 ## 许可证
 
 [Apache License 2.0](https://github.com/macrozheng/mall-admin-web/blob/master/LICENSE)
