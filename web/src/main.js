@@ -24,6 +24,9 @@ Vue.component('m-list-card', ListCard)
 import BackToTop from './components/BackToTop.vue'
 Vue.component('BackToTop', BackToTop)
 
+import PullToRefresh from './components/PullToRefresh.vue'
+Vue.component('m-pull-refresh', PullToRefresh)
+
 import axios from 'axios'
 Vue.prototype.$http = axios.create({
     baseURL: process.env.VUE_APP_API_URL || '/web/api'
