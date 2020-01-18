@@ -7,6 +7,9 @@ import Main from './views/Main.vue'
 import Article from './views/Article.vue'
 import Hero from './views/Hero.vue'
 
+import Star from './components/StarBackground.vue'
+import Star2 from './components/star.vue'
+
 
 Vue.use(Router)
 
@@ -42,6 +45,16 @@ export default new Router({
             // this generates a separate chunk (about.[hash].js) for this route
             // which is lazy-loaded when the route is visited.
             component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
-        }
+        },
+        {
+            path: '/stars1',
+            name: 'satr',
+            component: Star
+        },
+        {
+            path: '/stars2',
+            name: 'stars2',
+            component: Star2
+        },
     ]
 })
