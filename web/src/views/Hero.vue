@@ -1,7 +1,14 @@
 <template>
   <div class="page-hero" v-if="model">
-    <div class="topbar bg-black py-2 px-3 d-flex ai-center text-white" style="align-items:center;">
-      <img src="../assets/img/logo.jpg" height="30" style="border-radius:2px;" />
+    <div
+      class="topbar bg-black py-2 px-3 d-flex ai-center text-white"
+      style="align-items:center;"
+    >
+      <img
+        src="../assets/img/logo.jpg"
+        height="30"
+        style="border-radius:2px;"
+      />
       <div class="px-2 flex-1">
         <span class="text-white">王者荣耀</span>
         <span class="ml-2">攻略站</span>
@@ -9,25 +16,35 @@
       <router-link tag="div" to="/" class="fs-xs">更多英雄 &gt;</router-link>
     </div>
 
-    <div class="top" :style="{'background-image':`url(${model.banner})`}">
-      <div class="info p-3 text-white h-100 d-flex flex-column" style="justify-content:flex-end;">
-        <div>{{model.title}}</div>
-        <h2 class="my-2">{{model.name}}</h2>
-        <div class="my-2" v-if="model.categories">{{model.categories.map(v=>v.name).join('/')}}</div>
+    <div class="top" :style="{ 'background-image': `url(${model.banner})` }">
+      <div
+        class="info p-3 text-white h-100 d-flex flex-column"
+        style="justify-content:flex-end;"
+      >
+        <div>{{ model.title }}</div>
+        <h2 class="my-2">{{ model.name }}</h2>
+        <div class="my-2" v-if="model.categories">
+          {{ model.categories.map((v) => v.name).join("/") }}
+        </div>
 
-        <div class="d-flex my-2" style="justify-content:space-between;align-items:center;">
+        <div
+          class="d-flex my-2"
+          style="justify-content:space-between;align-items:center;"
+        >
           <div class="scores" v-if="model.scores">
             <span>难度</span>
-            <span class="badge bg-primary">{{model.scores.difficult}}</span>
+            <span class="badge bg-primary">{{ model.scores.difficult }}</span>
             <span>技能</span>
-            <span class="badge bg-blue">{{model.scores.skills}}</span>
+            <span class="badge bg-blue">{{ model.scores.skills }}</span>
             <span>攻击力</span>
-            <span class="badge bg-danger">{{model.scores.attack}}</span>
+            <span class="badge bg-danger">{{ model.scores.attack }}</span>
             <span>生存</span>
-            <span class="badge bg-dark">{{model.scores.survive}}</span>
+            <span class="badge bg-dark">{{ model.scores.survive }}</span>
           </div>
 
-          <router-link to="/" tag="span" class="text-grey fs-small">皮肤：2&gt;</router-link>
+          <router-link to="/" tag="span" class="text-grey fs-small"
+            >皮肤：2&gt;</router-link
+          >
         </div>
       </div>
     </div>
@@ -39,19 +56,19 @@
       >
         <div
           class="nav-item"
-          :class="{active: isactive===index}"
-          v-for="(tabitem,index) in tabs"
+          :class="{ active: isactive === index }"
+          v-for="(tabitem, index) in tabs"
           :key="index"
           @click="$refs.list.swiper.slideTo(index)"
         >
-          <div class="nav-link">{{tabitem.name}}</div>
+          <div class="nav-link">{{ tabitem.name }}</div>
         </div>
       </div>
       <div class="pt-3 mx-2">
         <swiper
           ref="list"
-          :options="{autoHeight:true}"
-          @slide-change="()=>isactive=$refs.list.swiper.realIndex"
+          :options="{ autoHeight: true }"
+          @slide-change="() => (isactive = $refs.list.swiper.realIndex)"
         >
           <swiper-slide>
             <!-- 技能上方按钮 - start -->
@@ -70,27 +87,32 @@
             <!-- 技能展示 - start -->
             <div class="skill-icons d-flex" v-if="model.skills">
               <img
-                v-for="(item,index) in model.skills"
+                v-for="(item, index) in model.skills"
                 :key="index"
                 :src="item.icon"
                 class="img-item"
-                :class="{activeimg: isimgactive===index}"
+                :class="{ activeimg: isimgactive === index }"
                 @click="isimgactive = index"
               />
             </div>
             <div class="skill-describes" v-if="model.skills">
               <ul>
                 <li>
-                  <span
-                    class="fs-llg mr-5"
-                    style="font-weight:600;"
-                  >{{model.skills[isimgactive].name}}</span>
-                  <span
-                    class="fs-sm text-grey"
-                  >(冷却值：{{model.skills[isimgactive].delay}} 消耗：{{model.skills[isimgactive].cost}})</span>
+                  <span class="fs-llg mr-5" style="font-weight:600;">{{
+                    model.skills[isimgactive].name
+                  }}</span>
+                  <span class="fs-sm text-grey"
+                    >(冷却值：{{ model.skills[isimgactive].delay }} 消耗：{{
+                      model.skills[isimgactive].cost
+                    }})</span
+                  >
                 </li>
-                <li class="border-bottom pb-3 fs-md">{{model.skills[isimgactive].description}}</li>
-                <li class="fs-md text-grey">小提示：{{model.skills[isimgactive].tips}}</li>
+                <li class="border-bottom pb-3 fs-md">
+                  {{ model.skills[isimgactive].description }}
+                </li>
+                <li class="fs-md text-grey">
+                  小提示：{{ model.skills[isimgactive].tips }}
+                </li>
               </ul>
             </div>
             <!-- 技能展示 - end -->
@@ -101,7 +123,7 @@
                 <img src alt />
                 <span class="fw-600 fs-llg">使用技巧</span>
               </div>
-              <p>{{model.usageTips}}</p>
+              <p>{{ model.usageTips }}</p>
             </div>
             <!-- 使用技巧 - end -->
 
@@ -111,7 +133,7 @@
                 <img src alt />
                 <span class="fw-600 fs-llg">对抗技巧</span>
               </div>
-              <p>{{model.battleTips}}</p>
+              <p>{{ model.battleTips }}</p>
             </div>
             <!-- 对抗技巧 - end -->
 
@@ -121,7 +143,7 @@
                 <img src alt />
                 <span class="fw-600 fs-llg">团战思路</span>
               </div>
-              <p>{{model.teamTips}}</p>
+              <p>{{ model.teamTips }}</p>
             </div>
             <!-- 团战思路 - end -->
           </swiper-slide>
@@ -147,7 +169,7 @@
 <script>
 export default {
   props: {
-    id: { required: true }
+    id: { required: true },
   },
   data() {
     return {
@@ -158,35 +180,34 @@ export default {
         height: "40px",
         "border-radius": "20px",
         "line-height": "40px",
-        background: "#fff"
+        background: "#fff",
       },
       model: {
         // categories: []
       },
       tabs: [
         {
-          name: "英雄初识"
+          name: "英雄初识",
         },
         {
-          name: "进阶攻略"
-        }
+          name: "进阶攻略",
+        },
       ],
       isactive: 0,
-      isimgactive: 0
+      isimgactive: 0,
     };
   },
   methods: {
     async fetchHeroInfo() {
       const res = await this.$http.get(`heros/${this.id}`);
       this.model = res.data;
-    }
+    },
   },
   created() {
     this.fetchHeroInfo();
-  }
+  },
 };
 </script>
-
 
 <style lang="scss">
 .page-hero {
