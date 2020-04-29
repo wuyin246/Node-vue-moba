@@ -1,7 +1,11 @@
 <template>
   <div>
     <div class="topbar bg-black py-2 px-3 d-flex ai-center">
-      <img src="../assets/img/logo.jpg" height="30" style="border-radius:2px;" />
+      <img
+        src="../assets/img/logo.jpg"
+        height="30"
+        style="border-radius:2px;"
+      />
       <div class="px-2 flex-1">
         <div class="text-white">王者荣耀</div>
         <div class="text-grey-1 fs-xxs">团队成就更多</div>
@@ -12,24 +16,46 @@
       <div class="nav1 text-white" style="justify-content:space-around;">
         <div
           class="nav1-item"
-          :class="{active: isactive1===true}"
-          @click="()=>{isactive1=true;isactive2=false;isactive3=false}"
+          :class="{ active: isactive1 === true }"
+          @click="
+            () => {
+              isactive1 = true
+              isactive2 = false
+              isactive3 = false
+            }
+          "
         >
           <router-link to="/" tag="div" class="nav-link">首页</router-link>
         </div>
         <div
           class="nav1-item"
-          :class="{active: isactive2===true}"
-          @click="()=>{isactive2=true;isactive1=false;isactive3=false}"
+          :class="{ active: isactive2 === true }"
+          @click="
+            () => {
+              isactive2 = true
+              isactive1 = false
+              isactive3 = false
+            }
+          "
         >
-          <router-link to="/strategy" tag="div" class="nav-link">攻略中心</router-link>
+          <router-link to="/strategy" tag="div" class="nav-link"
+            >攻略中心</router-link
+          >
         </div>
         <div
           class="nav1-item"
-          :class="{active: isactive3===true}"
-          @click="()=>{isactive3=true;isactive2=false;isactive1=false}"
+          :class="{ active: isactive3 === true }"
+          @click="
+            () => {
+              isactive3 = true
+              isactive2 = false
+              isactive1 = false
+            }
+          "
         >
-          <router-link to="/gamecenter" tag="div" class="nav-link">赛事中心</router-link>
+          <router-link to="/gamecenter" tag="div" class="nav-link"
+            >赛事中心</router-link
+          >
         </div>
       </div>
     </div>
@@ -46,15 +72,15 @@ export default {
     return {
       isactive1: true,
       isactive2: false,
-      isactive3: false
-    };
+      isactive3: false,
+    }
   },
-  methods: {}
-};
+  methods: {},
+}
 </script>
 
 <style lang="scss">
-@import "../assets/scss/variables";
+@import '../assets/scss/variables';
 
 .nav1 {
   display: flex;
@@ -62,8 +88,8 @@ export default {
     border-bottom: 3px solid transparent;
     padding-bottom: 0.2rem;
     &.active {
-      color: map-get($map: $colors, $key: "white");
-      border-bottom-color: map-get($map: $colors, $key: "white");
+      color: map-get($map: $colors, $key: 'white');
+      border-bottom-color: map-get($map: $colors, $key: 'white');
     }
   }
 }

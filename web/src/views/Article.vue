@@ -4,8 +4,10 @@
       <div @click="$router.push(`/`)">
         <img src="../assets/img/Back.png" width="13" />
       </div>
-      <strong class="flex-1 pl-2" style="color:#53bbf4;">{{model.title}}</strong>
-      <div class="text-grey fs-xs">{{model.createdAt | dateFormat}}</div>
+      <strong class="flex-1 pl-2" style="color:#53bbf4;">{{
+        model.title
+      }}</strong>
+      <div class="text-grey fs-xs">{{ model.createdAt | dateFormat }}</div>
     </div>
 
     <div v-html="model.body" class="px-3 body fs-lg"></div>
@@ -22,46 +24,47 @@
           tag="div"
           v-for="item in model.related"
           :key="item._id"
-        >{{item.title}}</router-link>
+          >{{ item.title }}</router-link
+        >
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import dayjs from "dayjs";
+import dayjs from 'dayjs'
 
 export default {
   filters: {
     dateFormat(val) {
-      return dayjs(val).format("YYYY/MM/DD");
-    }
+      return dayjs(val).format('YYYY/MM/DD')
+    },
   },
   props: {
-    id: { required: true }
+    id: { required: true },
   },
   data() {
     return {
-      model: null
-    };
+      model: null,
+    }
   },
   watch: {
     //   此处监听页面中 id 的变化，若id改变，则重新获取数据
-    id: "fetchArticle"
+    id: 'fetchArticle',
     //   id(){
     //       this.fetchArticle()
     //   }
   },
   methods: {
     async fetchArticle() {
-      const res = await this.$http.get(`articles/${this.id}`);
-      this.model = res.data;
-    }
+      const res = await this.$http.get(`articles/${this.id}`)
+      this.model = res.data
+    },
   },
   created() {
-    this.fetchArticle();
-  }
-};
+    this.fetchArticle()
+  },
+}
 </script>
 
 <style lang="scss">

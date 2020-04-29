@@ -1,86 +1,138 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from './views/Login.vue'
+
 import Main from './views/Main.vue'
-import CategoryEdit from './views/CategoryEdit.vue'
-import CategoryList from './views/CategoryList.vue'
-
-import ItemEdit from './views/ItemEdit.vue'
-import ItemList from './views/ItemList.vue'
-
-import HeroEdit from './views/HeroEdit.vue'
-import HeroList from './views/HeroList.vue'
-
-import ArticleEdit from './views/ArticleEdit.vue'
-import ArticleList from './views/ArticleList.vue'
-
-import AdEdit from './views/AdEdit.vue'
-import AdList from './views/AdList.vue'
-
-import AdminUserEdit from './views/AdminUserEdit.vue'
-import AdminUserList from './views/AdminUserList.vue'
-
-import VideoEdit from './views/VideoEdit.vue'
-import VideoList from './views/VideoList.vue'
-
-import StrategyEdit from './views/StrategyEdit.vue'
-import StrategyList from './views/StrategyList.vue'
-
 
 Vue.use(Router)
 
+const StarBackground = () => import('@/components/StarBackground')
+
 const router = new Router({
-    routes: [
+  routes: [
+    {
+      path: '*',
+      component: () => import('@/components/Error'),
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/views/Login'),
+      meta: { isPublic: true },
+    },
+    {
+      path: '/',
+      name: 'main',
+      component: Main,
+      children: [
+        // 分类路由
         {
-            path: '/login', name: 'login', component: Login, meta: { isPublic: true }
+          path: '/categories/create',
+          component: () => import('@/views/CategoryEdit'),
         },
         {
-            path: '/',
-            name: 'main',
-            component: Main,
-            children: [
-                { path: '/categories/create', component: CategoryEdit },
-                { path: '/categories/list', component: CategoryList },
-                { path: '/categories/edit/:id', component: CategoryEdit, props: true },
+          path: '/categories/list',
+          component: () => import('@/views/CategoryList'),
+        },
+        {
+          path: '/categories/edit/:id',
+          component: () => import('@/views/CategoryEdit'),
+          props: true,
+        },
 
-                { path: '/items/create', component: ItemEdit },
-                { path: '/items/list', component: ItemList },
-                { path: '/items/edit/:id', component: ItemEdit, props: true },
+        // 物品
+        { path: '/items/create', component: () => import('@/views/ItemEdit') },
+        { path: '/items/list', component: () => import('@/views/ItemList') },
+        {
+          path: '/items/edit/:id',
+          component: () => import('@/views/ItemEdit'),
+          props: true,
+        },
 
-                { path: '/heroes/create', component: HeroEdit },
-                { path: '/heroes/list', component: HeroList },
-                { path: '/heroes/edit/:id', component: HeroEdit, props: true },
+        // 英雄
+        { path: '/heroes/create', component: () => import('@/views/HeroEdit') },
+        { path: '/heroes/list', component: () => import('@/views/HeroList') },
+        {
+          path: '/heroes/edit/:id',
+          component: () => import('@/views/HeroEdit'),
+          props: true,
+        },
 
-                { path: '/articles/create', component: ArticleEdit },
-                { path: '/articles/list', component: ArticleList },
-                { path: '/articles/edit/:id', component: ArticleEdit, props: true },
+        // 文章
+        {
+          path: '/articles/create',
+          component: () => import('@/views/ArticleEdit'),
+        },
+        {
+          path: '/articles/list',
+          component: () => import('@/views/ArticleList'),
+        },
+        {
+          path: '/articles/edit/:id',
+          component: () => import('@/views/ArticleEdit'),
+          props: true,
+        },
 
-                { path: '/ads/create', component: AdEdit },
-                { path: '/ads/list', component: AdList },
-                { path: '/ads/edit/:id', component: AdEdit, props: true },
+        // 广告位
+        { path: '/ads/create', component: () => import('@/views/AdEdit') },
+        { path: '/ads/list', component: () => import('@/views/AdList') },
+        {
+          path: '/ads/edit/:id',
+          component: () => import('@/views/AdEdit'),
+          props: true,
+        },
 
-                { path: '/admin_users/create', component: AdminUserEdit },
-                { path: '/admin_users/list', component: AdminUserList },
-                { path: '/admin_users/edit/:id', component: AdminUserEdit, props: true },
+        // 管理员
+        {
+          path: '/admin_users/create',
+          component: () => import('@/views/AdminUserEdit'),
+        },
+        {
+          path: '/admin_users/list',
+          component: () => import('@/views/AdminUserList'),
+        },
+        {
+          path: '/admin_users/edit/:id',
+          component: () => import('@/views/AdminUserEdit'),
+          props: true,
+        },
 
-                { path: '/videoes/create', component: VideoEdit },
-                { path: '/videoes/list', component: VideoList },
-                { path: '/videoes/edit/:id', component: VideoEdit, props: true },
+        // 视频
+        {
+          path: '/videoes/create',
+          component: () => import('@/views/VideoEdit'),
+        },
+        { path: '/videoes/list', component: () => import('@/views/VideoList') },
+        {
+          path: '/videoes/edit/:id',
+          component: () => import('@/views/VideoEdit'),
+          props: true,
+        },
 
-                { path: '/strategies/create', component: StrategyEdit },
-                { path: '/strategies/list', component: StrategyList },
-                { path: '/strategies/edit/:id', component: StrategyEdit, props: true },
-            ]
-        }
-    ]
+        // 图文攻略
+        {
+          path: '/strategies/create',
+          component: () => import('@/views/StrategyEdit'),
+        },
+        {
+          path: '/strategies/list',
+          component: () => import('@/views/StrategyList'),
+        },
+        {
+          path: '/strategies/edit/:id',
+          component: () => import('@/views/StrategyEdit'),
+          props: true,
+        },
+      ],
+    },
+  ],
 })
 
 // 全局前置守卫：进行客户端路由限制
 router.beforeEach((to, from, next) => {
-    if (!to.meta.isPublic && !localStorage.token) {
-        return next('/login');
-    }
-    next();
+  if (!to.meta.isPublic && !localStorage.token) {
+    return next('/login')
+  }
+  next()
 })
 
 export default router

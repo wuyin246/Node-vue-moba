@@ -24,7 +24,7 @@
         <div>{{ model.title }}</div>
         <h2 class="my-2">{{ model.name }}</h2>
         <div class="my-2" v-if="model.categories">
-          {{ model.categories.map((v) => v.name).join("/") }}
+          {{ model.categories.map((v) => v.name).join('/') }}
         </div>
 
         <div
@@ -174,39 +174,39 @@ export default {
   data() {
     return {
       myBackToTopStyle: {
-        right: "20px",
-        bottom: "150px",
-        width: "40px",
-        height: "40px",
-        "border-radius": "20px",
-        "line-height": "40px",
-        background: "#fff",
+        right: '20px',
+        bottom: '150px',
+        width: '40px',
+        height: '40px',
+        'border-radius': '20px',
+        'line-height': '40px',
+        background: '#fff',
       },
       model: {
         // categories: []
       },
       tabs: [
         {
-          name: "英雄初识",
+          name: '英雄初识',
         },
         {
-          name: "进阶攻略",
+          name: '进阶攻略',
         },
       ],
       isactive: 0,
       isimgactive: 0,
-    };
+    }
   },
   methods: {
     async fetchHeroInfo() {
-      const res = await this.$http.get(`heros/${this.id}`);
-      this.model = res.data;
+      const res = await this.$http.get(`heros/${this.id}`)
+      this.model = res.data
     },
   },
   created() {
-    this.fetchHeroInfo();
+    this.fetchHeroInfo()
   },
-};
+}
 </script>
 
 <style lang="scss">

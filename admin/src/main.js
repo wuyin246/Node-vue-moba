@@ -6,27 +6,30 @@ import router from './router'
 Vue.config.productionTip = false
 
 import './style.css'
+
 //引入 并 写入Vue原型上  this.$http 来调用
 import http from './http'
-Vue.prototype.$http = http;
 
+import store from './store'
+Vue.prototype.$http = http
 
 Vue.mixin({
-    computed: {
-        uploadUrl() {
-            return this.$http.defaults.baseURL + '/upload'
-        }
+  computed: {
+    uploadUrl() {
+      return this.$http.defaults.baseURL + '/upload'
     },
-    methods: {
-        getAuthHeaders() {
-            return {
-                Authorization: `Bearer ${localStorage.token || ''}`
-            }
-        }
+  },
+  methods: {
+    getAuthHeaders() {
+      return {
+        Authorization: `Bearer ${localStorage.token || ''}`,
+      }
     },
+  },
 })
 
 new Vue({
-    router,
-    render: h => h(App)
+  router,
+  store,
+  render: (h) => h(App)
 }).$mount('#app')

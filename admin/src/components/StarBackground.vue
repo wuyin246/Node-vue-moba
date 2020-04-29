@@ -80,7 +80,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .sky {
   background: radial-gradient(
     220% 105% at bottom center,

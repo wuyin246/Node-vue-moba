@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{id ? '编辑':'新建' }}英雄</h1>
+    <h1>{{ id ? '编辑' : '新建' }}英雄</h1>
     <el-form @submit.native.prevent="save" label-width="120px">
       <!-- <el-form-item label="上级分类">
         <el-select v-model="model.parent">
@@ -15,7 +15,7 @@
               :action="uploadUrl"
               :headers="getAuthHeaders()"
               :show-file-list="false"
-              :on-success="res=>$set(model,'avatar',res.url)"
+              :on-success="(res) => $set(model, 'avatar', res.url)"
             >
               <img v-if="model.avatar" :src="model.avatar" class="avatar" />
               <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -28,7 +28,7 @@
               :action="uploadUrl"
               :headers="getAuthHeaders()"
               :show-file-list="false"
-              :on-success="res=>$set(model,'banner',res.url)"
+              :on-success="(res) => $set(model, 'banner', res.url)"
             >
               <img v-if="model.banner" :src="model.banner" class="avatar" />
               <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -63,24 +63,49 @@
             ></el-rate>
           </el-form-item>
           <el-form-item label="技能">
-            <el-rate style="margin-top:0.8rem;" :max="9" show-score v-model="model.scores.skills"></el-rate>
+            <el-rate
+              style="margin-top:0.8rem;"
+              :max="9"
+              show-score
+              v-model="model.scores.skills"
+            ></el-rate>
           </el-form-item>
           <el-form-item label="攻击">
-            <el-rate style="margin-top:0.8rem;" :max="9" show-score v-model="model.scores.attack"></el-rate>
+            <el-rate
+              style="margin-top:0.8rem;"
+              :max="9"
+              show-score
+              v-model="model.scores.attack"
+            ></el-rate>
           </el-form-item>
           <el-form-item label="生存">
-            <el-rate style="margin-top:0.8rem;" :max="9" show-score v-model="model.scores.survive"></el-rate>
+            <el-rate
+              style="margin-top:0.8rem;"
+              :max="9"
+              show-score
+              v-model="model.scores.survive"
+            ></el-rate>
           </el-form-item>
 
           <el-form-item label="顺风出装">
             <el-select v-model="model.items1" multiple>
-              <el-option v-for="item of items" :label="item.name" :value="item._id" :key="item._id"></el-option>
+              <el-option
+                v-for="item of items"
+                :label="item.name"
+                :value="item._id"
+                :key="item._id"
+              ></el-option>
             </el-select>
           </el-form-item>
 
           <el-form-item label="逆风出装">
             <el-select v-model="model.items2" multiple>
-              <el-option v-for="item of items" :label="item.name" :value="item._id" :key="item._id"></el-option>
+              <el-option
+                v-for="item of items"
+                :label="item.name"
+                :value="item._id"
+                :key="item._id"
+              ></el-option>
             </el-select>
           </el-form-item>
 
@@ -103,7 +128,7 @@
             <i class="el-icon-plus"></i> 添加技能
           </el-button>
           <el-row type="flex" style="flex-wrap:wrap;">
-            <el-col :md="12" v-for="(item,i) in model.skills" :key="i">
+            <el-col :md="12" v-for="(item, i) in model.skills" :key="i">
               <el-form-item label="名称">
                 <el-input v-model="item.name"></el-input>
               </el-form-item>
@@ -114,7 +139,7 @@
                   :action="uploadUrl"
                   :headers="getAuthHeaders()"
                   :show-file-list="false"
-                  :on-success="res => $set(item,'icon',res.url)"
+                  :on-success="(res) => $set(item, 'icon', res.url)"
                 >
                   <img v-if="item.icon" :src="item.icon" class="avatar" />
                   <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -138,7 +163,12 @@
               </el-form-item>
 
               <el-form-item>
-                <el-button type="danger" size="small" @click="model.skills.splice(i,1)">删除</el-button>
+                <el-button
+                  type="danger"
+                  size="small"
+                  @click="model.skills.splice(i, 1)"
+                  >删除</el-button
+                >
               </el-form-item>
             </el-col>
           </el-row>
@@ -150,7 +180,7 @@
             <i class="el-icon-plus"></i> 添加英雄
           </el-button>
           <el-row type="flex" style="flex-wrap:wrap;">
-            <el-col :md="12" v-for="(item,i) in model.partners" :key="i">
+            <el-col :md="12" v-for="(item, i) in model.partners" :key="i">
               <el-form-item label="英雄">
                 <el-select filterable v-model="item.hero">
                   <el-option
@@ -167,7 +197,12 @@
               </el-form-item>
 
               <el-form-item>
-                <el-button type="danger" size="small" @click="model.partners.splice(i,1)">删除</el-button>
+                <el-button
+                  type="danger"
+                  size="small"
+                  @click="model.partners.splice(i, 1)"
+                  >删除</el-button
+                >
               </el-form-item>
             </el-col>
           </el-row>
@@ -183,7 +218,7 @@
 <script>
 export default {
   props: {
-    id: {}
+    id: {},
   },
   data() {
     return {
@@ -191,15 +226,15 @@ export default {
       items: [],
       heros: [],
       model: {
-        name: "",
-        avatar: "",
+        name: '',
+        avatar: '',
         skills: [],
         partners: [],
         scores: {
-          difficult: 0
-        }
-      }
-    };
+          difficult: 0,
+        },
+      },
+    }
   },
   methods: {
     // afterUpload(res) {
@@ -212,45 +247,44 @@ export default {
     //   this.model.avatar = res.url;
     // },
     async save() {
-      var res;
+      var res
       if (this.id) {
-        res = await this.$http.put(`rest/heroes/${this.id}`, this.model);
+        res = await this.$http.put(`rest/heroes/${this.id}`, this.model)
       } else {
-        res = await this.$http.post("rest/heroes", this.model);
+        res = await this.$http.post('rest/heroes', this.model)
       }
 
       //   this.$router.push("/heroes/list");
       this.$message({
-        type: "success",
-        message: "保存成功"
-      });
+        type: 'success',
+        message: '保存成功',
+      })
     },
     async fetch() {
-      const res = await this.$http.get(`rest/heroes/${this.id}`);
+      const res = await this.$http.get(`rest/heroes/${this.id}`)
       // Object.assign() 方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象
-      this.model = Object.assign({}, this.model, res.data);
+      this.model = Object.assign({}, this.model, res.data)
     },
     async fetchCategories() {
-      const res = await this.$http.get(`rest/categories`);
-      this.categories = res.data;
+      const res = await this.$http.get(`rest/categories`)
+      this.categories = res.data
     },
     async fetchItems() {
-      const res = await this.$http.get(`rest/items`);
-      this.items = res.data;
+      const res = await this.$http.get(`rest/items`)
+      this.items = res.data
     },
     async fetchHeros() {
-      const res = await this.$http.get(`rest/heros`);
-      this.heros = res.data;
-    }
+      const res = await this.$http.get(`rest/heros`)
+      this.heros = res.data
+    },
   },
   created() {
-    this.fetchItems();
-    this.fetchHeros();
-    this.fetchCategories();
-    this.id && this.fetch();
-  }
-};
+    this.fetchItems()
+    this.fetchHeros()
+    this.fetchCategories()
+    this.id && this.fetch()
+  },
+}
 </script>
 
-<style>
-</style>
+<style></style>

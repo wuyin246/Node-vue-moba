@@ -12,7 +12,10 @@
       <swiper-slide>
         <img class="w-100" src="../assets/img/13.jpg" alt />
       </swiper-slide>
-      <div class="swiper-pagination pagination-home text-right px-3" slot="pagination"></div>
+      <div
+        class="swiper-pagination pagination-home text-right px-3"
+        slot="pagination"
+      ></div>
     </swiper>
     <!-- end of swiper -->
 
@@ -26,12 +29,12 @@
 </template>
 
 <script>
-import dayjs from "dayjs";
+import dayjs from 'dayjs'
 export default {
   filters: {
     dateFormat(val) {
-      return dayjs(val).format("MM/DD");
-    }
+      return dayjs(val).format('MM/DD')
+    },
   },
   data() {
     return {
@@ -41,40 +44,40 @@ export default {
       isNavSHow: true,
       swiperOption: {
         pagination: {
-          el: ".pagination-home"
-        }
-      }
-    };
+          el: '.pagination-home',
+        },
+      },
+    }
   },
   methods: {
     refresh(done) {
       setTimeout(() => {
-        this.num++;
-        done(); //我就想说这里，把状态归0
-      }, 500);
+        this.num++
+        done() //我就想说这里，把状态归0
+      }, 500)
     },
 
     show() {
-      this.isNavSHow = !this.isNavSHow;
+      this.isNavSHow = !this.isNavSHow
     },
     async fetchNewsCats() {
-      const res = await this.$http.get("news/list");
-      this.newsCats = res.data;
+      const res = await this.$http.get('news/list')
+      this.newsCats = res.data
     },
     async fetchHerosCats() {
-      const res = await this.$http.get("heros/list");
-      this.heroCats = res.data;
-    }
+      const res = await this.$http.get('heros/list')
+      this.heroCats = res.data
+    },
   },
   created() {
-    this.fetchNewsCats();
-    this.fetchHerosCats();
-  }
-};
+    this.fetchNewsCats()
+    this.fetchHerosCats()
+  },
+}
 </script>
 
 <style lang="scss">
-@import "../assets/scss/variables";
+@import '../assets/scss/variables';
 
 .content {
   padding: 0 15px;
@@ -90,7 +93,7 @@ export default {
     border-radius: 0.1538rem;
     background: #fff;
     &.swiper-pagination-bullet-active {
-      background: map-get($map: $colors, $key: "info");
+      background: map-get($map: $colors, $key: 'info');
     }
   }
 }
