@@ -1,23 +1,60 @@
 .avatar-uploader .el-upload {
-    border: 1px dashed #d9d9d9;
-    border-radius: 6px;
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-  }
-  .avatar-uploader .el-upload:hover {
-    border-color: #409eff;
-  }
-  .avatar-uploader-icon {
-    font-size: 28px;
-    color: #8c939d;
-    min-width: 5rem;
-    height: 5rem;
-    line-height: 5rem;
-    text-align: center;
-  }
-  .avatar {
-    min-width: 5rem;
-    height: 5rem;
-    display: block;
-  }
+  border: 1px dashed #d9d9d9;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.avatar-uploader .el-upload:hover {
+  border-color: #409eff;
+}
+.avatar-uploader-icon {
+  font-size: 28px;
+  color: #8c939d;
+  min-width: 5rem;
+  height: 5rem;
+  line-height: 5rem;
+  text-align: center;
+}
+.avatar {
+  min-width: 5rem;
+  height: 5rem;
+  display: block;
+}
+
+/* Start common-style */
+
+/* fontsize */
+.fs-20 {
+  font-size: 20px;
+}
+.fs-17 {
+  font-size: 17px;
+}
+
+/* text-color */
+.text-white {
+  color: #fff;
+}
+
+/* flex */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+/* margin padding */
+.mr-10 {
+  margin-right: 10px;
+}
+
+.hidden {
+  display: none;
+}
+/* End common-style */

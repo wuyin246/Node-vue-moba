@@ -1,10 +1,22 @@
 <template>
   <div>
-    <h1>{{id ? '编辑':'新建' }}管理员</h1>
+    <h1>{{ id ? '编辑' : '新建' }}管理员</h1>
     <el-form @submit.native.prevent="save" label-width="120px">
       <el-form-item label="用户名">
         <el-input v-model="model.username"></el-input>
       </el-form-item>
+      <el-form-item label="可管理权限">
+        <el-select v-model="model.limitslist" multiple placeholder="请选择">
+          <el-option
+            v-for="item in options"
+            :key="item.value"
+            :label="item.label"
+            :value="item.value"
+          >
+          </el-option>
+        </el-select>
+      </el-form-item>
+
       <el-form-item label="密码">
         <el-input type="text" v-model="model.password"></el-input>
       </el-form-item>
@@ -18,40 +30,59 @@
 <script>
 export default {
   props: {
-    id: {}
+    id: {},
   },
   data() {
     return {
       model: {
-        name: ""
-      }
-    };
+        name: '',
+        password: '',
+        limitslist: [],
+      },
+      options: [
+        {
+          value: '内容管理;',
+          label: '内容管理',
+        },
+        {
+          value: '运营管理;',
+          label: '运营管理',
+        },
+        {
+          value: '系统设置;',
+          label: '系统设置',
+        },
+        {
+          value: '动态图表;',
+          label: '动态图表',
+        },
+      ],
+    }
   },
   methods: {
     async save() {
-      let res;
+      let res
       if (this.id) {
-        res = await this.$http.put(`rest/admin_users/${this.id}`, this.model);
+        res = await this.$http.put(`rest/admin_users/${this.id}`, this.model)
       } else {
-        res = await this.$http.post("rest/admin_users", this.model);
+        res = await this.$http.post('rest/admin_users', this.model)
       }
 
-      this.$router.push("/admin_users/list");
+      this.$router.push('/admin_users/list')
       this.$message({
-        type: "success",
-        message: "保存成功"
-      });
+        type: 'success',
+        message: '保存成功',
+      })
     },
     async fetch() {
-      const res = await this.$http.get(`rest/admin_users/${this.id}`);
-      this.model = res.data;
-    }
+      const res = await this.$http.get(`rest/admin_users/${this.id}`)
+      this.model = res.data
+    },
   },
   created() {
-    this.id && this.fetch();
-  }
-};
+    this.id && this.fetch()
+  },
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

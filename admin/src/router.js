@@ -5,13 +5,11 @@ import Main from './views/Main.vue'
 
 Vue.use(Router)
 
-const StarBackground = () => import('@/components/StarBackground')
-
 const router = new Router({
   routes: [
     {
       path: '*',
-      component: () => import('@/components/Error'),
+      component: () => import('@/components/StarBackground'),
     },
     {
       path: '/login',
@@ -121,6 +119,12 @@ const router = new Router({
           path: '/strategies/edit/:id',
           component: () => import('@/views/StrategyEdit'),
           props: true,
+        },
+
+        // 热门资讯
+        {
+          path: '/echarts/hot',
+          component: () => import('@/echarts/HotContainer'),
         },
       ],
     },
