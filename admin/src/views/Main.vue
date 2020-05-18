@@ -1,7 +1,7 @@
 <template>
   <el-container style="height: 100vh;">
     <el-aside class="slider-bar" :class="isshow ? 'slide' : ''" width="220px">
-      <div class="logo-title">VUEADMIN</div>
+      <div class="logo-title" @click="$router.push('/')">VUEADMIN</div>
       <el-menu router :default-active="$route.path">
         <el-submenu index="1" v-if="isshowcontent">
           <template slot="title">
@@ -153,6 +153,7 @@
   border-right-style: solid;
   background-color: #20a0ff;
   color: #fff;
+  cursor: pointer;
 }
 
 .el-header {
@@ -234,7 +235,7 @@ export default {
         this.$router.push('/login')
       }, 2000)
     }
-    limitslist.forEach((item, index) => {
+    limitslist.forEach((item) => {
       switch (item) {
         case '运营管理;':
           this.isshowoperate = true

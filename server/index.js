@@ -8,7 +8,12 @@ var cors = require('cors')
 // 配置跨域中间件
 
 // 定义允许跨域白名单
-var whitelist = ['http://192.168.155.78:8080', 'http://localhost:8080']
+var whitelist = [
+  'http://192.168.155.78:8080',
+  'http://192.168.155.78:8081',
+  'http://localhost:8080',
+  'http://localhost:8081',
+]
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1 || !origin) {

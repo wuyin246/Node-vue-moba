@@ -22,6 +22,10 @@ const router = new Router({
       name: 'main',
       component: Main,
       children: [
+        {
+          path: '/',
+          component: () => import('@/echarts/MainCharts'),
+        },
         // 分类路由
         {
           path: '/categories/create',
