@@ -195,10 +195,10 @@ export default {
     return {
       isshow: false,
       username: '',
-      isshowcontent: false,
-      isshowoperate: false,
-      isshowsystem: false,
-      isshowecharts: false,
+      isshowcontent: true,
+      isshowoperate: true,
+      isshowsystem: true,
+      isshowecharts: true,
     }
   },
   methods: {

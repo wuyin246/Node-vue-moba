@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import echarts from 'echarts'
+import echarts from 'echarts';
 export default {
   mounted() {
-    const myCharts = echarts.init(this.$refs.mainCharts)
+    const myCharts = echarts.init(this.$refs.mainCharts);
     let options = {
       title: {
         text: '近一周访问曲线',
@@ -23,7 +23,7 @@ export default {
         },
       },
       legend: {
-        data: ['邮件营销', '联盟广告', '视频广告', '直接访问', '搜索引擎'],
+        data: ['联盟广告', '邮件营销', '视频广告', '直接访问', '搜索引擎'],
       },
       toolbox: {
         feature: {
@@ -91,11 +91,11 @@ export default {
           data: [820, 932, 901, 934, 1290, 1330, 1320],
         },
       ],
-    }
+    };
 
-    myCharts.setOption(options)
+    myCharts.setOption(options);
   },
-}
+};
 </script>
 
 <style scoped>

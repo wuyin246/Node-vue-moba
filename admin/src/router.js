@@ -1,9 +1,9 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import Vue from 'vue';
+import Router from 'vue-router';
 
-import Main from './views/Main.vue'
+import Main from './views/Main.vue';
 
-Vue.use(Router)
+Vue.use(Router);
 
 const router = new Router({
   routes: [
@@ -133,14 +133,57 @@ const router = new Router({
       ],
     },
   ],
-})
+});
 
 // 全局前置守卫：进行客户端路由限制
 router.beforeEach((to, from, next) => {
   if (!to.meta.isPublic && !localStorage.token) {
-    return next('/login')
+    return next('/login');
   }
-  next()
-})
+  next();
+});
 
-export default router
+// router.beforeEach(async(to, from, next) => {
+//   if (to.meta.title) {
+//     document.title = to.meta.title + ' - ' + Config.title
+//   }
+//   NProgress.start()
+//   if (store.getters.token) {
+//     // 已登录且要跳转的页面是登录页
+//     if (to.path === '/login') {
+//       // next({ path: '/login' })
+//       store.commit('SET_TOKEN', '')
+//       localStorage.removeItem('token')
+//       NProgress.done()
+//       next()
+//     } else {
+//       if (store.getters.roles.length === 0) {
+//         // 判断当前用户是否已拉取完user_info信息
+//         const res = await store.dispatch('GetInfo').catch(async(err) => {
+//           await store.dispatch('LogOut')
+//           location.reload() // 为了重新实例化vue-router对象 避免bug
+//         })
+//         if (res) {
+//           await loadMenus(next, to)
+//         }
+//         // 登录时未拉取 菜单，在此处拉取
+//       } else if (store.getters.loadMenus) {
+//         // 修改成false，防止死循环
+//         store.commit('SET_LOAD_MENUS', false)
+//         await loadMenus(next, to)
+//       } else {
+//         next()
+//       }
+//     }
+//   } else {
+//     /* has no token*/
+//     if (whiteList.indexOf(to.path) !== -1) {
+//       // 在免登录白名单，直接进入
+//       next()
+//     } else {
+//       // next(`/login?redirect=${to.fullPath}`) // 否则全部重定向到登录页
+//       next('/login')
+//     }
+//   }
+
+export default router;

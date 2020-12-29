@@ -11,10 +11,7 @@
       <swiper-slide>
         <img class="w-100" src="../assets/img/03.jpeg" alt />
       </swiper-slide>
-      <div
-        class="swiper-pagination pagination-home text-right px-3"
-        slot="pagination"
-      ></div>
+      <div class="swiper-pagination pagination-home text-right px-3" slot="pagination"></div>
     </swiper>
     <!-- end of swiper -->
     <div class="nav-icons bg-white mt-3 pt-3 text-center text-dark-1">
@@ -65,13 +62,8 @@
 
     <m-list-card icon="menu" title="新闻资讯" :categories="newsCats">
       <template #items="{category}">
-        <router-link
-          :to="`/articles/${items._id}`"
-          tag="div"
-          class="py-2 fs-llg d-flex py-3"
-          v-for="(items, index) in category.newsList"
-          :key="index"
-        >
+        <router-link :to="`/articles/${items._id}`" tag="div" class="py-2 fs-llg d-flex py-3"
+          v-for="(items, index) in category.newsList" :key="index">
           <span class="text-grey-1">[{{ items.categoryName }}]</span>
           <span class="px-2">|</span>
           <span class="flex-1 text-dark-1 text-ellipsis pr-2">{{
@@ -95,14 +87,8 @@
     <m-list-card icon="card-hero" title="英雄列表" :categories="heroCats">
       <template #items="{category}">
         <div class="d-flex flex-wrap" style="margin:0 -0.5rem;">
-          <router-link
-            tag="div"
-            :to="`/heros/${items._id}`"
-            class="p-2 text-center"
-            style="width:20%;"
-            v-for="(items, index) in category.heroList"
-            :key="index"
-          >
+          <router-link tag="div" :to="`/heros/${items._id}`" class="p-2 text-center" style="width:20%;"
+            v-for="(items, index) in category.heroList" :key="index">
             <img :src="items.avatar" class="w-100" alt />
             <div>{{ items.name }}</div>
           </router-link>
@@ -113,28 +99,13 @@
     <m-list-card icon="video" title="精彩视频" :categories="videoCats">
       <template #items="{category}">
         <div class="d-flex flex-wrap" style="margin:0 -0.5rem;">
-          <router-link
-            tag="div"
-            :to="`/videoes/${items._id}`"
-            class="p-2"
-            style="width:50%;"
-            v-for="(items, index) in category.videoList"
-            :key="index"
-          >
-            <img
-              :src="items.previewimg"
-              class="w-100"
-              style="border-radius:3px;"
-              alt
-            />
+          <router-link tag="div" :to="`/videoes/${items._id}`" class="p-2" style="width:50%;"
+            v-for="(items, index) in category.videoList" :key="index">
+            <img :src="items.previewimg" class="w-100" style="border-radius:3px;" alt />
             <div class="text-overflow">{{ items.title }}</div>
             <div class="d-flex fs-xs">
               <span class="flex-1 text-grey">
-                <img
-                  src="../assets/img/img_icon_video.png"
-                  class="img-video"
-                  alt
-                />
+                <img src="../assets/img/img_icon_video.png" class="img-video" alt />
                 {{ items.playnum / 1000 }}万
               </span>
               <span class="text-grey">{{ items.createdAt | dateFormat }}</span>
@@ -147,23 +118,11 @@
     <m-list-card icon="gonglve" title="图文攻略" :categories="strategyCats">
       <template #items="{category}">
         <div class="d-flex flex-wrap" style="margin:0 -0.5rem;">
-          <router-link
-            tag="div"
-            :to="`/videoes/${items._id}`"
-            class="p-2 d-flex"
-            style="width:100%;align-items:center;"
-            v-for="(items, index) in category.strategyList"
-            :key="index"
-          >
-            <img
-              :src="items.previewimg"
-              class
-              style="border-radius:2px;width:33%;height:5.5rem;"
-              alt
-            />
+          <router-link tag="div" :to="`/videoes/${items._id}`" class="p-2 d-flex" style="width:100%;align-items:center;"
+            v-for="(items, index) in category.strategyList" :key="index">
+            <img :src="items.previewimg" class style="border-radius:2px;width:33%;height:5.5rem;" alt />
             <div
-              style="list-style:none;margin-left:5px;height:5.5rem;display:flex;flex-direction:column;justify-content:space-between;"
-            >
+              style="list-style:none;margin-left:5px;height:5.5rem;display:flex;flex-direction:column;justify-content:space-between;">
               <span class="text-ellipsis fs-llg" style="width:14.6154rem;">{{
                 items.title
               }}</span>
@@ -184,12 +143,8 @@
 
     <el-tooltip placement="top" content="返回顶部">
       <!-- 组件使用 -->
-      <BackToTop
-        transitionName="fade"
-        :customStyle="myBackToTopStyle"
-        :visibilityHeight="300"
-        :backPosition="0"
-      ></BackToTop>
+      <BackToTop transitionName="fade" :customStyle="myBackToTopStyle" :visibilityHeight="300" :backPosition="0">
+      </BackToTop>
     </el-tooltip>
   </div>
 </template>
@@ -199,11 +154,11 @@ import dayjs from 'dayjs'
 
 export default {
   filters: {
-    dateFormat(val) {
+    dateFormat (val) {
       return dayjs(val).format('MM/DD')
     },
   },
-  data() {
+  data () {
     return {
       myBackToTopStyle: {
         right: '20px',
@@ -228,7 +183,7 @@ export default {
     }
   },
   methods: {
-    show() {
+    show () {
       console.log(this.$store.state.count)
       this.isNavSHow = !this.isNavSHow
       if (this.isNavSHow == true) {
@@ -237,24 +192,24 @@ export default {
         this.isNavShowText = '展开'
       }
     },
-    async fetchNewsCats() {
+    async fetchNewsCats () {
       const res = await this.$http.get('news/list')
       this.newsCats = res.data
     },
-    async fetchHerosCats() {
+    async fetchHerosCats () {
       const res = await this.$http.get('heros/list')
       this.heroCats = res.data
     },
-    async fetchVideoesCats() {
+    async fetchVideoesCats () {
       const res = await this.$http.get('videoes/list')
       this.videoCats = res.data
     },
-    async fetchStrategiesCats() {
+    async fetchStrategiesCats () {
       const res = await this.$http.get('strategies/list')
       this.strategyCats = res.data
     },
   },
-  created() {
+  created () {
     this.fetchNewsCats()
     this.fetchHerosCats()
     this.fetchVideoesCats()
@@ -264,7 +219,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/scss/variables';
+@import "../assets/scss/variables";
 
 .text-overflow {
   display: -webkit-box;
@@ -287,7 +242,7 @@ export default {
     border-radius: 0.1538rem;
     background: #fff;
     &.swiper-pagination-bullet-active {
-      background: map-get($map: $colors, $key: 'info');
+      background: map-get($map: $colors, $key: "info");
     }
   }
 }

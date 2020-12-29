@@ -107,6 +107,12 @@ module.exports = (app) => {
       userid: user._id,
       limitslist: user.limitslist,
     })
+    // res.send({
+    //   token:'11',
+    //   username:'22',
+    //   userid:'223344',
+    //   limitslist:['系统设置','运营管理']
+    // })
   })
 
   // 错误处理函数
